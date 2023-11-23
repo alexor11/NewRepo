@@ -75,6 +75,7 @@ public class WebTablesPage extends BasePage{
     }
     public void validateTableContent(WebTableObject webTableObject){
         String rowContent=tableRowsList.get(webTableObject.getTableSize()).getText();
+
         Assert.assertTrue(rowContent.contains(webTableObject.getFirstName()));
         LoggerUtility.infoTest("The user validates the presence of "+webTableObject.getFirstName()+" value");
         Assert.assertTrue(rowContent.contains(webTableObject.getLastName()));

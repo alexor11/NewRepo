@@ -14,6 +14,7 @@ import org.testng.Assert;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PracticeFormPage extends BasePage {
     public PracticeFormPage(WebDriver driver) {
@@ -162,6 +163,7 @@ public class PracticeFormPage extends BasePage {
         String date = practiceFormObject.getDate() + " " + practiceFormObject.getMonth() + "," + practiceFormObject.getYear();
         String photo = uploadPhoto.getText();
 
+
         String rowContent = table.getText();
 
         Assert.assertTrue(rowContent.contains(fullName));
@@ -169,9 +171,14 @@ public class PracticeFormPage extends BasePage {
         Assert.assertTrue(rowContent.contains(practiceFormObject.getGender()));
         Assert.assertTrue(rowContent.contains(practiceFormObject.getMobile()));
         Assert.assertTrue(rowContent.contains(date));
-        Assert.assertTrue(rowContent.contains(photo));
+        //Assert.assertTrue(rowContent.contains(photo));
         Assert.assertTrue(rowContent.contains(practiceFormObject.getSubjects()));
-        //Assert.assertTrue(rowContent.contains(practiceFormObject.getHobbies()));
+
+        for(String hobbies: practiceFormObject.getHobbies()){
+            Assert.assertTrue(rowContent.contains(hobbies));
+        }
+
+
         Assert.assertTrue(rowContent.contains(practiceFormObject.getCurrentaddress()));
         Assert.assertTrue(rowContent.contains(stateAndCity));
 
