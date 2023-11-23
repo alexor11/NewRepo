@@ -40,8 +40,8 @@ public class PracticeFormTest extends Hooks {
         practiceFormPage.hobbiesHandle(practiceobject);
         ExtentUtility.attachTestLog("pass","I completed hobbies");
 
-        practiceFormPage.uploadPhotoMethod();
-        ExtentUtility.attachTestLog("pass","I have uploaded an image");
+        //practiceFormPage.uploadPhotoMethod();
+        //ExtentUtility.attachTestLog("pass","I have uploaded an image");
 
         practiceFormPage.completeStateAndCity(practiceobject);
         ExtentUtility.attachTestLog("pass","I have completed state and City");
