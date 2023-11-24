@@ -1,6 +1,7 @@
 package Pages;
 
 import Logger.LoggerUtility;
+import ObjectData.CommonObject;
 import ObjectData.PracticeFormObject;
 import ObjectData.WebTableObject;
 import com.beust.ah.A;
@@ -158,19 +159,23 @@ public class PracticeFormPage extends BasePage {
 
 
     public void validateTableContent(PracticeFormObject practiceFormObject){
+        CommonObject common = new CommonObject();
+
+
         String fullName = practiceFormObject.getFirstName() + " " + practiceFormObject.getLastName();
         String stateAndCity = practiceFormObject.getState() + " " + practiceFormObject.getCity();
         String date = practiceFormObject.getDate() + " " + practiceFormObject.getMonth() + "," + practiceFormObject.getYear();
         String photo = uploadPhoto.getText();
 
+        String testst = common.StringConcat(practiceFormObject.getDate(), practiceFormObject.getMonth(), practiceFormObject.getYear());
 
-        String rowContent = table.getText();
 
-        Assert.assertTrue(rowContent.contains(fullName));
+        String rowContent = table.getText().replace(',', ' ');
+        Assert.assertTrue(rowContent.contains(common.StringConcat(practiceFormObject.getFirstName(), practiceFormObject.getLastName())));
         Assert.assertTrue(rowContent.contains(practiceFormObject.getEmail()));
         Assert.assertTrue(rowContent.contains(practiceFormObject.getGender()));
         Assert.assertTrue(rowContent.contains(practiceFormObject.getMobile()));
-        Assert.assertTrue(rowContent.contains(date));
+        Assert.assertTrue(rowContent.contains(common.StringConcat(practiceFormObject.getDate(), practiceFormObject.getMonth(), practiceFormObject.getYear())));
         //Assert.assertTrue(rowContent.contains(photo));
         Assert.assertTrue(rowContent.contains(practiceFormObject.getSubjects()));
 
@@ -178,9 +183,8 @@ public class PracticeFormPage extends BasePage {
             Assert.assertTrue(rowContent.contains(hobbies));
         }
 
-
         Assert.assertTrue(rowContent.contains(practiceFormObject.getCurrentaddress()));
-        Assert.assertTrue(rowContent.contains(stateAndCity));
+        Assert.assertTrue(rowContent.contains(common.StringConcat(practiceFormObject.getState(), practiceFormObject.getCity())));
 
 
 
